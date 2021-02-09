@@ -28,7 +28,7 @@ static header * freep = 0; /* Current entry point in free list */
 
 void * xmalloc (unsigned nbytes) {
     header * p, * prevp;
-    static header *morecore(unsigned); /* Call to the operating system */
+    header *morecore(unsigned); /* Call to the operating system */
     unsigned nunits;
 
     /* Least multiple of sizeof (header) that the
@@ -69,8 +69,8 @@ void * xmalloc (unsigned nbytes) {
 
 /* A static function is not visible outside of your file */
 
-static header * morecore(unsigned nu){
-    char mem1(NALLOC);
+header * morecore(unsigned nu){
+    char mem1[NALLOC];
     char * cp, * sbrk (int);
     void xfree (void *);
     header * up;
