@@ -75,17 +75,16 @@ static header * morecore(unsigned nu){
     void xfree (void *);
     header * up;
     if (nu <NALLOC) nu = NALLOC;
-    /* ttt
-       cp = sbrk (nu * sizeof (header));
-       if (cp == (char *) -1) /* sbrk returns -1 in the event of an error */
-    return 0;
-    */ */
+    /* ttt */
+    /* cp = sbrk (nu * sizeof (header)); */
+    /* if (cp == (char *) -1) /\* sbrk returns -1 in the event of an error *\/ */
+    /*     return 0; */
 
-        cp = &mem1;
-        up = (header *) cp;
-        up->s.size = nu; /* Size is entered */
-        xfree ((void *) (up + 1)); /* Installation in free list */
-        return freep;
+    cp = &mem1;
+    up = (header *) cp;
+    up->s.size = nu; /* Size is entered */
+    xfree ((void *) (up + 1)); /* Installation in free list */
+    return freep;
 }
 
 void xfree(void * ap) {
